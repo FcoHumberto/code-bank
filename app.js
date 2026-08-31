@@ -52,11 +52,13 @@ while (loop === true){
         loop = false;
     } else if (operation === '') {
         alert('Digite um número.');
+        continue;
     } else if (isNaN(operation)) {
         alert('Operacao invalida. Por favor, digite um número válido.');
+        continue;
     }
 
-    console.log(operation)
+    console.log(Number(operation))
 
     switch (Number(operation)) {
         case 1: operations.check(); break;
