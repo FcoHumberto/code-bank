@@ -50,6 +50,7 @@ while (loop === true){
     if (operation === null) {
         alert('Operação cancelada.');
         loop = false;
+        continue;
     } else if (operation === '') {
         alert('Digite um número.');
         continue;
