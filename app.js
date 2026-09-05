@@ -1,4 +1,5 @@
 let balance = 0;
+const statement = [];
 let loop = true;
 
 function greet() {
@@ -20,15 +21,42 @@ greet();
 
 const operations = {
     check: () => alert(`Saldo atual: R$ ${balance}`),
-    depoists: () => {
+    deposits: () => {
         const value = Number(prompt('Valor do depósito:'));
+        
         balance += value;
+
+        statement[statement.length] = {
+            type: 'Depósito',
+            value: Number(value)
+        };
+
         alert(`Saldo atual: R$ ${balance}`);
     },
     cashout: () => {
         const value = Number(prompt('Valor do saque:'));
+
         balance -= value;
+
+        statement[statement.length] = {
+            type: 'Saque',
+            value: Number(value)
+        };
+
         alert(`Saldo atual: R$ ${balance}`);
+    },
+    statement: () => {
+        if(statement.length === 0) {
+            return alert('Nenhuma transação realiazada.');
+        }
+
+        let text = 'Extrato:\n\n';
+
+        for(let i = 0; i < statement.length; i++){
+            text += `${statement[i].type} = R$${statement[i].value}\n`;
+        }
+
+        alert(text);
     },
     exit: () => {
         alert(`Agradecemos a preferência.`);
@@ -38,14 +66,7 @@ const operations = {
 }
 
 while (loop === true){
-    const operation = prompt(
-        `Escolha uma operação: 
-        
-        1 - Consultar
-        2 - Depositar
-        3 - Sacar
-        4 - Sair`
-    );
+    const operation = prompt('Escolha uma operação:\n1 - Consultar\n2 - Depositar\n3 - Sacar\n4 - Extrato\n5 - Sair');
 
     if (operation === null) {
         alert('Operação cancelada.');
@@ -57,18 +78,32 @@ while (loop === true){
     } else if (isNaN(operation)) {
         alert('Operacao invalida. Por favor, digite um número válido.');
         continue;
-    }
+    }/*else {
+        switch (Number(operation)) {
+            case 1: operations.check(); break;
+
+            case 2: operations.deposits(); break;
+
+            case 3: operations.cashout(); break;
+
+            case 4: operations.exit(); break;
+
+            default: operations.invalid();
+        }
+    }*/
 
     console.log(Number(operation))
 
     switch (Number(operation)) {
         case 1: operations.check(); break;
 
-        case 2: operations.depoists(); break;
+        case 2: operations.deposits(); break;
 
         case 3: operations.cashout(); break;
 
-        case 4: operations.exit(); break;
+        case 4: operations.statement(); break;
+
+        case 5: operations.exit(); break;
 
         default: operations.invalid();
     }
