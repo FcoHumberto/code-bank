@@ -22,7 +22,14 @@ greet();
 const operations = {
     check: () => alert(`Saldo atual: R$ ${balance}`),
     deposits: () => {
-        const value = Number(prompt('Valor do depósito:'));
+        const response = prompt('Valor do depósito:');
+
+        if (response === null){
+            alert('Operação cancelada.');
+            return;
+        }
+
+        const value = Number(response);
 
         if (value < 1){
             alert('Valor inválido para depósito.');
@@ -35,14 +42,21 @@ const operations = {
     
             statement[statement.length] = {
                 type: 'Depósito',
-                value: Number(value)
+                value: value
             };
     
             alert(`Saldo atual: R$ ${balance}`);
         }   
     },
     cashout: () => {
-        const value = Number(prompt('Valor do saque:'));
+        const response = prompt('Valor do saque:');
+
+        if (response === null){
+            alert('Operação cancelada.');
+            return;
+        }
+
+        const value = Number(response);
 
         if (value < 1){
             alert('Valor inválido para saque.');
@@ -58,7 +72,7 @@ const operations = {
     
             statement[statement.length] = {
                 type: 'Saque',
-                value: Number(value)
+                value: value
             };
     
             alert(`Saldo atual: R$ ${balance}`);
@@ -78,6 +92,10 @@ const operations = {
         alert(text);
     },
     exit: () => {
+        const response = confirm('Deseja realmente sair?');
+
+        if(!response) return;
+
         alert(`Agradecemos a preferência.`);
         loop = false;
     },
@@ -88,9 +106,12 @@ while (loop === true){
     const operation = prompt('Escolha uma operação:\n1 - Consultar\n2 - Depositar\n3 - Sacar\n4 - Extrato\n5 - Sair');
 
     if (operation === null) {
+        const response = confirm('Deseja realmente cancelar?');
+
+        if (!response) continue
+        
         alert('Operação cancelada.');
         loop = false;
-        continue;
     } else if (operation === '') {
         alert('Digite um número.');
         continue;
