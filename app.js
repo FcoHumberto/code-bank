@@ -23,27 +23,46 @@ const operations = {
     check: () => alert(`Saldo atual: R$ ${balance}`),
     deposits: () => {
         const value = Number(prompt('Valor do depósito:'));
-        
-        balance += value;
 
-        statement[statement.length] = {
-            type: 'Depósito',
-            value: Number(value)
-        };
-
-        alert(`Saldo atual: R$ ${balance}`);
+        if (value < 1){
+            alert('Valor inválido para depósito.');
+            return operations.deposits();
+        } else if (isNaN(value)){
+            alert('Valor inválido para depósito.');
+            return operations.deposits();
+        } else{
+            balance += value;
+    
+            statement[statement.length] = {
+                type: 'Depósito',
+                value: Number(value)
+            };
+    
+            alert(`Saldo atual: R$ ${balance}`);
+        }   
     },
     cashout: () => {
         const value = Number(prompt('Valor do saque:'));
 
-        balance -= value;
-
-        statement[statement.length] = {
-            type: 'Saque',
-            value: Number(value)
-        };
-
-        alert(`Saldo atual: R$ ${balance}`);
+        if (value < 1){
+            alert('Valor inválido para saque.');
+            return operations.cashout();
+        } else if(isNaN(value)){
+            alert('Valor inválido para saque.');
+            return operations.cashout();
+        } else if(value > balance){
+            alert('Saldo insuficiente');
+            return operations.cashout();
+        } else{
+            balance -= value;
+    
+            statement[statement.length] = {
+                type: 'Saque',
+                value: Number(value)
+            };
+    
+            alert(`Saldo atual: R$ ${balance}`);
+        }
     },
     statement: () => {
         if(statement.length === 0) {
@@ -91,8 +110,6 @@ while (loop === true){
             default: operations.invalid();
         }
     }*/
-
-    console.log(Number(operation))
 
     switch (Number(operation)) {
         case 1: operations.check(); break;
