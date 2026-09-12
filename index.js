@@ -1,7 +1,6 @@
 const iniciar = document.querySelector('button');
 
-iniciar.addEventListener('click', () =>{
-    function greet() {
+function greet() {
         const username = window.prompt('Digite seu nome:');
         
         if (!username){
@@ -18,7 +17,6 @@ iniciar.addEventListener('click', () =>{
             sessionStorage.setItem('username', username);
             window.location.href = './src/app.html';
         }
-    }
+}
 
-    greet();
-});
+iniciar.addEventListener('click', () => window.location.href = './src/login.html');
