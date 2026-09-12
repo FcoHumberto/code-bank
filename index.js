@@ -10,10 +10,12 @@ iniciar.addEventListener('click', () =>{
             }
 
             window.location.href = './src/app.html';
+            sessionStorage.setItem('username', username);
             return window.alert(`Olá, seja bem-vindo.`);
 
         } else{
             window.alert(`Olá, ${username}! Seja bem-vindo.`);
+            sessionStorage.setItem('username', username);
             window.location.href = './src/app.html';
         }
     }

@@ -79,8 +79,29 @@ const operations = {
 
         if (!response) return;
 
-        alert(`Agradecemos a preferência.`);
-        window.location.href = '../index.html'
+        const username = sessionStorage.getItem('username');
+
+        if(!username){
+            alert('Agradecemos a preferência.');
+        } else{
+            alert(`Agradecemos a preferência, ${username}.`);
+        }
+
+        exit.disabled = true;
+
+        let text = exit.textContent = 'Saindo';
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function animacao(){
+            for (let c = 1; c <= 3; c++){
+                await sleep (980);
+                text += '.';
+                exit.textContent = text;
+            };
+        };
+
+        animacao();
+        setTimeout(() => window.location.href = '../index.html', 3000);
     },
 }
 
