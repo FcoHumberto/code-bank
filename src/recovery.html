@@ -8,7 +8,7 @@
         <form>
             <input 
                 type="email" 
-                placeholder="seugmail@gmail.com" 
+                placeholder="Digite seu email" 
                 id="email"
             />
 
@@ -16,22 +16,27 @@
 
             <input 
                 type="password" 
-                placeholder="sua senha" 
-                id="senha"
+                placeholder="Digite a nova senha" 
+                id="novasenha"
             />
             
             <br><br>
 
-            <button id="login">Entrar</button>
+            <input 
+                type="password" 
+                placeholder="Confirme a nova senha" 
+                id="confirmacao"
+            />
+            
+            <br><br>
+
+            <button id="redefinir">Redefinir senha</button>
 
             <br><br><br>
 
             <button id="voltar">Voltar</button>
         </form>
-
         <a href="./register.html">Não possui uma conta? Cadastre-se aqui.</a>
-        <br><br>
-        <a href="./recovery.html">Esqueci minha senha.</a>
     </body>
-    <script src="./login.js"></script>
+    <script src="./recovery.js"></script>
 </html>

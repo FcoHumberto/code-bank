@@ -4,7 +4,7 @@ const senha = document.querySelector('input[type="password"]');
 const create = document.querySelector('#create');
 const voltar = document.querySelector('#voltar');
 
-const getDatas = JSON.parse(sessionStorage.getItem('database'));
+const getDatas = JSON.parse(sessionStorage.getItem('database')) || [];
 
 const datas = [...getDatas];
 
@@ -18,6 +18,8 @@ create.addEventListener('click', (event) => {
     if (emailValue === '' || senhaValue === ''){
         return window.alert('Os cmapos de email e/ou senha precisam estar preenchidos.');
     }
+
+    for (let i = 0; i < datas.length; i++) if (datas[i].email === email.value) return alert("Este email já está cadastrado.");
 
     datas[datas.length] = {
         name: nameValue || 'usuário',
