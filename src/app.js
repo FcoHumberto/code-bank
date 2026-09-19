@@ -87,6 +87,10 @@ const operations = {
             alert(`Agradecemos a preferência, ${username}.`);
         }
 
+        check.disabled = true;
+        deposits.disabled = true;
+        cashout.disabled = true;
+        statements.disabled = true;
         exit.disabled = true;
 
         let text = exit.textContent = 'Saindo';

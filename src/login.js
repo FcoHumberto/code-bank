@@ -4,14 +4,13 @@ const email = document.querySelector('#email');
 const senha = document.querySelector('#senha');
 /* tbm poderia ser ('input[type="password"]') */
 
-const button = document.querySelector('button');
+const user = {};
 
-const user = {
-    email: 'admin@gmail.com',
-    senha: 'admin'
-}
+const login = document.querySelector('#login');
 
-button.addEventListener('click', (event) =>{
+const voltar = document.querySelector('#voltar');
+
+login.addEventListener('click', (event) =>{
     event.preventDefault();
 
     const emailValue = email.value;
@@ -21,11 +20,26 @@ button.addEventListener('click', (event) =>{
         return window.alert('Todos os campos precisam ser preenchidos.');
     }
 
-    if (emailValue !== user.email || senhaValue !== user.senha){
-        return window.alert('Email e/ou senha incorretos.');
+    for (let i = 0; i < users.length; i ++){
+        if (users[i].email === emailValue && users[i].senha === senhaValue){
+            user.name = users[i].name;
+            user.email = users[i].email;
+            user.senha = users[i].senha;
+        }
     }
 
+    if (!user.email || !user.senha){
+        return window.alert('Email e/ou senha incorretos.');
+    } 
     window.alert('Acesso permitido.');
 
     window.location.href = './app.html';
-})
+});
+
+voltar.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    window.location.href = '../index.html'
+});
+
+const users = JSON.parse(sessionStorage.getItem('database'));
