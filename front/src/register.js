@@ -16,7 +16,7 @@ create.addEventListener('click', (event) => {
     const senhaValue = senha.value;
 
     if (emailValue === '' || senhaValue === ''){
-        return window.alert('Os cmapos de email e/ou senha precisam estar preenchidos.');
+        return window.alert('Os campos de email e/ou senha precisam estar preenchidos.');
     }
 
     for (let i = 0; i < datas.length; i++) if (datas[i].email === email.value) return alert("Este email já está cadastrado.");

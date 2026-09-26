@@ -16,11 +16,11 @@ redefinir.addEventListener('click', (event) => {
 
     if (emailValue === '' || novaSenhaValue === '' || confirmacaoValue === '') {
         return window.alert('Todos os campos precisam ser preenchidos.');
-    }
+    };
 
     if (novaSenhaValue !== confirmacaoValue) {
-        return window.alert('As senhas não coincidem.')
-    }
+        return window.alert('As senhas não coincidem.');
+    };
 
     for (let i = 0; i < getDatas.length; i++) {
         if (getDatas[i].email === emailValue) {
